@@ -32,9 +32,9 @@
       gap: 20px;
       padding: 20px;
       overflow-x: auto;
-      scroll-snap-type: x mandatory; /* Плавное защелкивание */
+      scroll-snap-type: x mandatory;
       position: relative;
-      scroll-behavior: smooth; /* Плавная прокрутка */
+      scroll-behavior: smooth;
     }
 
     .card {
@@ -45,6 +45,8 @@
       scroll-snap-align: center;
       box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
       transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+      text-align: center;
+      position: relative;
     }
 
     .card img {
@@ -74,23 +76,55 @@
       background-color: #ff0099;
       color: white;
       border: none;
-      border-radius: 20px;
-      padding: 10px;
-      margin: 10px;
+      border-radius: 30px;
+      padding: 15px 30px;
+      font-size: 18px;
+      font-weight: bold;
       cursor: pointer;
       text-transform: uppercase;
-      font-size: 16px;
-      transition: background-color 0.3s ease, transform 0.3s ease;
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: transform 0.3s ease, background-color 0.3s ease;
     }
 
     .card button:hover {
       background-color: #ff66cc;
-      transform: scale(1.1);
+      transform: translateX(-50%) scale(1.1);
     }
 
-    .card.active {
-      transform: scale(1.1);
-      box-shadow: 0 10px 20px rgba(255, 0, 153, 0.6);
+    .card button:active {
+      transform: translateX(-50%) scale(0.95);
+    }
+
+    /* Анимация кнопки */
+    .card button::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 30px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+      animation: pulse 2s infinite;
+      z-index: -1;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(0.9);
+        opacity: 0.6;
+      }
+      50% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: scale(0.9);
+        opacity: 0.6;
+      }
     }
 
     .container::-webkit-scrollbar {
@@ -129,46 +163,5 @@
     </div>
   </div>
 
-  <script>
-    const container = document.getElementById('carousel');
-    const cards = document.querySelectorAll('.card');
-
-    // Функция для выделения активной карточки
-    const updateActiveCard = () => {
-      let closestCard = null;
-      let minDistance = Infinity;
-
-      cards.forEach((card) => {
-        const rect = card.getBoundingClientRect();
-        const cardCenter = rect.left + rect.width / 2;
-        const containerCenter = container.offsetWidth / 2;
-        const distance = Math.abs(containerCenter - cardCenter);
-
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestCard = card;
-        }
-
-        card.classList.remove('active');
-      });
-
-      if (closestCard) {
-        closestCard.classList.add('active');
-        closestCard.scrollIntoView({ behavior: 'smooth', inline: 'center' });
-      }
-    };
-
-    // Запуск при каждом окончании скроллинга
-    let isScrolling;
-    container.addEventListener('scroll', () => {
-      window.clearTimeout(isScrolling);
-      isScrolling = setTimeout(() => {
-        updateActiveCard();
-      }, 100); // Ожидание завершения скроллинга
-    });
-
-    // Инициализация первой активной карточки
-    updateActiveCard();
-  </script>
 </body>
 </html>
