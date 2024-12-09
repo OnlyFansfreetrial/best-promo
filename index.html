@@ -4,7 +4,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-    /* Основной фон и текст */
     body {
       background-color: #111;
       color: #fff;
@@ -13,7 +12,6 @@
       padding: 0;
     }
 
-    /* Заголовок */
     h2 {
       font-size: 36px;
       margin-top: 20px;
@@ -28,32 +26,31 @@
       margin: 10px 0;
     }
 
-    /* Контейнер карточек */
     .container {
       display: flex;
       align-items: center;
       gap: 20px;
       padding: 20px;
-      overflow: hidden;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory; /* Плавное защелкивание */
       position: relative;
+      scroll-behavior: smooth; /* Плавная прокрутка */
     }
 
-    /* Карточки */
     .card {
       background: linear-gradient(135deg, #1a1a1a, #333);
       border-radius: 15px;
       width: 280px;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
       flex-shrink: 0;
-      transition: transform 0.3s ease;
+      scroll-snap-align: center;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .card img {
-      width: 100%; /* Изображение занимает всю ширину */
-      height: auto; /* Сохраняем пропорции изображения */
-      object-fit: contain; /* Показываем изображение полностью */
+      width: 100%;
+      height: auto;
+      object-fit: contain;
       border-top-left-radius: 15px;
       border-top-right-radius: 15px;
     }
@@ -88,20 +85,18 @@
       transform: scale(1.1);
     }
 
-    /* Скрываем скролл */
+    .card.active {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(255, 0, 153, 0.6);
+    }
+
     .container::-webkit-scrollbar {
       display: none;
     }
 
-    /* Адаптивность для мобильных устройств */
     @media (max-width: 768px) {
       .container {
-        overflow-x: scroll; /* Прокрутка по горизонтали */
-        scroll-snap-type: x mandatory; /* Прокрутка с защелкой */
-      }
-
-      .card {
-        scroll-snap-align: center; /* Центрируем карточки */
+        overflow-x: scroll; /* Горизонтальная прокрутка */
       }
     }
   </style>
@@ -138,47 +133,76 @@
   </div>
 
   <script>
-    const carousel = document.getElementById('carousel');
+    const container = document.getElementById('carousel');
+    const cards = document.querySelectorAll('.card');
     let isDragging = false;
     let startX;
     let scrollLeft;
 
-    // Начало свайпа
-    carousel.addEventListener('mousedown', (e) => {
+    // Добавляем выделение активной карточки
+    const updateActiveCard = () => {
+      let closestCard = null;
+      let minDistance = Infinity;
+
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.left + rect.width / 2;
+        const containerCenter = container.offsetWidth / 2;
+        const distance = Math.abs(containerCenter - cardCenter);
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestCard = card;
+        }
+
+        card.classList.remove('active');
+      });
+
+      if (closestCard) {
+        closestCard.classList.add('active');
+      }
+    };
+
+    container.addEventListener('scroll', updateActiveCard);
+
+    // Свайп мышью (ПК)
+    container.addEventListener('mousedown', (e) => {
       isDragging = true;
-      startX = e.pageX - carousel.offsetLeft;
-      scrollLeft = carousel.scrollLeft;
+      startX = e.pageX - container.offsetLeft;
+      scrollLeft = container.scrollLeft;
     });
 
-    carousel.addEventListener('mouseleave', () => {
+    container.addEventListener('mouseleave', () => {
       isDragging = false;
     });
 
-    carousel.addEventListener('mouseup', () => {
+    container.addEventListener('mouseup', () => {
       isDragging = false;
+      updateActiveCard();
     });
 
-    // Свайп
-    carousel.addEventListener('mousemove', (e) => {
+    container.addEventListener('mousemove', (e) => {
       if (!isDragging) return;
       e.preventDefault();
-      const x = e.pageX - carousel.offsetLeft;
-      const walk = (x - startX) * 2; // Ускорение прокрутки
-      carousel.scrollLeft = scrollLeft - walk;
+      const x = e.pageX - container.offsetLeft;
+      const walk = (x - startX) * 2; // Ускорение
+      container.scrollLeft = scrollLeft - walk;
     });
 
-    // Для тач-устройств (мобильных)
-    let touchStartX = 0;
-
-    carousel.addEventListener('touchstart', (e) => {
-      touchStartX = e.touches[0].clientX;
+    // Свайп для мобильных
+    container.addEventListener('touchstart', (e) => {
+      startX = e.touches[0].clientX;
+      scrollLeft = container.scrollLeft;
     });
 
-    carousel.addEventListener('touchmove', (e) => {
-      const touchEndX = e.touches[0].clientX;
-      const diff = touchStartX - touchEndX;
-      carousel.scrollLeft += diff; // Прокрутка при свайпе
+    container.addEventListener('touchmove', (e) => {
+      const x = e.touches[0].clientX;
+      const walk = startX - x;
+      container.scrollLeft += walk;
     });
+
+    // Устанавливаем первую карточку как активную
+    updateActiveCard();
   </script>
 </body>
 </html>
