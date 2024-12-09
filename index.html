@@ -47,10 +47,12 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       text-align: center;
       padding: 15px;
+      position: relative;
     }
 
-    .card.active {
-      transform: scale(1.1);
+    /* На ПК - подсветка карточки при наведении мышки */
+    .card:hover {
+      transform: scale(1.05);
       box-shadow: 0 10px 20px rgba(255, 0, 153, 0.6);
     }
 
@@ -105,6 +107,22 @@
     .container::-webkit-scrollbar {
       display: none;
     }
+
+    /* Стили для мобильных устройств (свайп) */
+    @media (max-width: 768px) {
+      .container {
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+      }
+
+      .card {
+        scroll-snap-align: center;
+      }
+
+      .card:hover {
+        transform: none; /* Убираем увеличение на мобильных */
+      }
+    }
   </style>
 </head>
 <body>
@@ -145,10 +163,10 @@
   </div>
 
   <script>
+    // На мобильных карточки можно свайпать
     const container = document.getElementById('carousel');
     const cards = document.querySelectorAll('.card');
 
-    // Функция для выделения активной карточки
     const updateActiveCard = () => {
       let closestCard = null;
       let minDistance = Infinity;
@@ -169,16 +187,17 @@
 
       if (closestCard) {
         closestCard.classList.add('active');
+        closestCard.scrollIntoView({ behavior: 'smooth', inline: 'center' });
       }
     };
 
-    // Запуск при каждом окончании скроллинга
+    // Ожидаем завершения скроллинга
     let isScrolling;
     container.addEventListener('scroll', () => {
       window.clearTimeout(isScrolling);
       isScrolling = setTimeout(() => {
         updateActiveCard();
-      }, 100); // Ожидание завершения скроллинга
+      }, 100);
     });
 
     // Инициализация первой активной карточки
