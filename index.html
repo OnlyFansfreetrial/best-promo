@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!-- Добавляем meta тег для масштабирования на мобильных устройствах -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
+    /* Логотип в левом верхнем углу */
+    .logo {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 50px;
+      height: 50px;
+    }
+
     /* Основной стиль карточки */
     .card {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -13,10 +20,12 @@
       margin: 20px auto;
       text-align: center;
       font-family: Arial, sans-serif;
-      flex-basis: 300px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: scale(1.05); /* Увеличиваем карточку при наведении */
+      box-shadow: 0 4px 16px 0 rgba(0, 0, 255, 0.5); /* Подсветка голубым цветом */
     }
 
     .title {
@@ -61,58 +70,61 @@
       gap: 20px;
     }
 
-    /* Медиазапросы для мобильных устройств */
+    /* Адаптивность для мобильных устройств */
     @media (max-width: 768px) {
       .container {
-        flex-direction: column; /* Изменяем направление карточек на вертикальное */
+        flex-direction: column; /* Изменение на вертикальные карточки */
         gap: 10px;
       }
 
       .card {
-        max-width: 90%; /* Уменьшаем ширину карточки на мобильных */
-        flex-basis: 100%; /* Каждая карточка будет занимать всю ширину */
+        max-width: 90%;
+        flex-basis: 100%;
       }
 
       .subtitle {
-        font-size: 16px; /* Уменьшаем размер шрифта на мобильных */
+        font-size: 16px;
       }
 
       button {
-        font-size: 16px; /* Уменьшаем размер шрифта на кнопке */
+        font-size: 16px;
       }
     }
   </style>
 </head>
 <body>
 
-<h2 style="text-align:center">The most popular OnlyFans accounts</h2>
-<p class="subtitle">You might have seen these models on Instagram, TikTok, Twitter, YouTube</p>
+  <!-- Логотип в левом верхнем углу -->
+  <img src="images/logo.png" alt="Logo" class="logo">
 
-<div class="container">
-  <div class="card">
-    <img src="images/Paula.JPG" alt="Paula" style="width:100%">
-    <h1>Paula Flores</h1>
-    <p class="title">I'm keen on talking dirty, open to fetishes and kinks!😈, don't be shy!</p>
-    <p>@paula_flores</p>
-    <p><a href="https://onlyfans.com/paula_flores/c441" target="_blank"><button>Get OnlyFans</button></a></p>
-  </div>
+  <h2 style="text-align:center">The most popular OnlyFans accounts</h2>
+  <p class="subtitle">You might have seen these models on Instagram, TikTok, Twitter, YouTube</p>
 
-  <div class="card">
-    <img src="images/Sofia.jpg" alt="Sofia" style="width:100%">
-    <h1>Sofia Parker</h1>
-    <p class="title">Ready to ignite your imagination? 🔥 I'm Sofia, your sporty muse and fitness trainer who knows how to mix health with pleasure 💪 Love to treat myself to some sweet sins 🍰</p>
-    <p>@sofiaaaparker</p>
-    <p><a href="https://onlyfans.com/sofiaaaparker/c373" target="_blank"><button>Get OnlyFans</button></a></p>
-  </div>
+  <div class="container">
+    <div class="card">
+      <img src="images/Paula.JPG" alt="Paula" style="width:100%">
+      <h1>Paula Flores</h1>
+      <p class="title">I'm keen on talking dirty, open to fetishes and kinks!😈, don't be shy!</p>
+      <p>@paula_flores</p>
+      <p><a href="https://onlyfans.com/paula_flores/c441" target="_blank"><button>Get OnlyFans</button></a></p>
+    </div>
 
-  <div class="card">
-    <img src="images/Zoe.jpg" alt="zoe" style="width:100%">
-    <h1>Zoe's Paws</h1>
-    <p class="title">So, let's embark on a journey of laughter, creativity, and endless possibilities together! 💖✨</p>
-    <p>@murrawrr</p>
-    <p><a href="https://onlyfans.com/murrawrr/c221" target="_blank"><button>Get OnlyFans</button></a></p>
+    <div class="card">
+      <img src="images/Sofia.jpg" alt="Sofia" style="width:100%">
+      <h1>Sofia Parker</h1>
+      <p class="title">Ready to ignite your imagination? 🔥 I'm Sofia, your sporty muse and fitness trainer who knows how to mix health with pleasure 💪 Love to treat myself to some sweet sins 🍰</p>
+      <p>@sofiaaaparker</p>
+      <p><a href="https://onlyfans.com/sofiaaaparker/c373" target="_blank"><button>Get OnlyFans</button></a></p>
+    </div>
+
+    <div class="card">
+      <img src="images/Zoe.jpg" alt="zoe" style="width:100%">
+      <h1>Zoe's Paws</h1>
+      <p class="title">So, let's embark on a journey of laughter, creativity, and endless possibilities together! 💖✨</p>
+      <p>@murrawrr</p>
+      <p><a href="https://onlyfans.com/murrawrr/c221" target="_blank"><button>Get OnlyFans</button></a></p>
+    </div>
   </div>
-</div>
 
 </body>
 </html>
