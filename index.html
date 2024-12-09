@@ -48,6 +48,7 @@
       padding: 40px;
       position: relative;
       width: 100%;
+      overflow: hidden;
     }
 
     /* Карточки */
@@ -212,12 +213,14 @@
       }
     }
 
-    // Добавляем обработчик для тач событий
-    document.getElementById('profile-container').addEventListener('touchstart', (event) => {
-      touchStartX = event.touches[0].screenX;
-    });
+    // Добавляем обработчик для тач событий (только для мобильных устройств)
+    if (window.innerWidth <= 768) {
+      document.getElementById('profile-container').addEventListener('touchstart', (event) => {
+        touchStartX = event.touches[0].screenX;
+      });
 
-    document.getElementById('profile-container').addEventListener('touchend', handleSwipe);
+      document.getElementById('profile-container').addEventListener('touchend', handleSwipe);
+    }
 
     // Инициализируем первую карточку как активную
     updateActiveCard();
