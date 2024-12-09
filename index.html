@@ -6,49 +6,38 @@
   <style>
     /* Основной фон и текст */
     body {
-      background-color: #111; /* Темный фон, как на OnlyFans */
+      background-color: #111; /* Темный фон */
       color: #fff; /* Белый текст */
       font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
-      text-align: center;
     }
 
-    /* Главный заголовок с эффектом */
+    /* Заголовок */
     h2 {
-      font-size: 48px;
-      margin-top: 80px;
-      font-weight: bold;
-      letter-spacing: 2px;
-      color: #ff0099;
-      text-transform: uppercase;
-      animation: fadeIn 2s ease-in-out; /* Эффект появления заголовка */
-    }
-
-    /* Подзаголовок */
-    .subtitle {
-      font-size: 20px;
-      color: #bbb;
+      font-size: 36px;
       margin-top: 20px;
-      animation: fadeIn 3s ease-in-out;
+      color: #ff0099;
+      text-align: center;
+      text-transform: uppercase;
     }
 
-    /* Анимация */
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(50px); }
-      100% { opacity: 1; transform: translateY(0); }
+    .subtitle {
+      font-size: 18px;
+      color: #bbb;
+      text-align: center;
+      margin: 10px 0;
     }
 
-    /* Контейнер для карточек */
+    /* Контейнер карточек */
     .container {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap: 30px;
-      padding: 40px;
+      gap: 20px;
+      padding: 20px;
+      overflow: hidden; /* Прячем лишние части */
       position: relative;
-      width: 100%;
-      overflow: hidden;
     }
 
     /* Карточки */
@@ -57,93 +46,66 @@
       border-radius: 15px;
       width: 280px;
       box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-      overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
-      cursor: pointer;
       display: flex;
       flex-direction: column;
-      flex-shrink: 0;
-      position: relative;
-      filter: blur(5px); /* Размытие всех карточек по умолчанию */
-    }
-
-    .card.active {
-      z-index: 10;
-      filter: none; /* Убираем размытие для активной карточки */
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .card img {
-      width: 100%; /* Заполняем всю ширину карточки */
-      height: auto; /* Сохраняем пропорции изображения */
-      object-fit: contain; /* Сохраняем пропорции, не обрезая изображение */
+      width: 100%; /* Заполняем карточку */
+      height: 180px;
+      object-fit: cover; /* Сохраняем пропорции */
       border-top-left-radius: 15px;
       border-top-right-radius: 15px;
     }
 
     .card h1 {
-      font-size: 24px;
+      font-size: 20px;
       color: #fff;
-      margin: 15px 0;
+      margin: 10px;
     }
 
     .card .title {
-      color: #aaa;
       font-size: 16px;
-      margin: 10px 0;
+      color: #aaa;
+      margin: 10px;
     }
 
-    /* Кнопка с анимацией */
     .card button {
       background-color: #ff0099;
-      border: none;
-      padding: 12px;
-      width: 100%;
-      font-size: 18px;
       color: white;
-      text-transform: uppercase;
+      border: none;
+      border-radius: 20px;
+      padding: 10px;
+      margin: 10px;
       cursor: pointer;
-      border-radius: 25px;
-      margin-bottom: 20px;
+      text-transform: uppercase;
+      font-size: 16px;
       transition: background-color 0.3s ease, transform 0.3s ease;
     }
 
     .card button:hover {
       background-color: #ff66cc;
-      transform: scale(1.1); /* Легкое увеличение кнопки при наведении */
+      transform: scale(1.1);
     }
 
-    /* Адаптивность для мобильных устройств */
+    /* Скрываем скролл */
+    .container::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Для мобильных устройств */
     @media (max-width: 768px) {
-      h2 {
-        font-size: 36px;
-      }
-
-      .subtitle {
-        font-size: 16px;
-      }
-
       .container {
-        gap: 10px;
-        overflow-x: auto; /* Разрешаем прокрутку на мобильных */
-        scroll-snap-type: x mandatory; /* Прокрутка карточек по кругу */
+        overflow-x: scroll; /* Прокрутка по горизонтали */
+        scroll-snap-type: x mandatory; /* Прокрутка с защелкой */
       }
 
       .card {
+        scroll-snap-align: center; /* Центрируем карточки */
+        flex-shrink: 0;
         width: 80%;
-        flex-shrink: 0; /* Карточки не сжимаются */
-      }
-
-      /* Скрываем стандартный scrollbar */
-      .container::-webkit-scrollbar {
-        display: none;
-      }
-
-      .container {
-        scroll-snap-type: x mandatory; /* Для плавного перемещения */
-      }
-
-      .card {
-        scroll-snap-align: center; /* Позиционирование карточек по центру при свайпе */
       }
     }
   </style>
@@ -153,15 +115,13 @@
   <h2>The Most Popular OnlyFans Accounts</h2>
   <p class="subtitle">You might have seen these models on Instagram, TikTok, Twitter, YouTube</p>
 
-  <div class="container" id="profile-container">
+  <div class="container" id="carousel">
     <!-- Карточка 1 -->
     <div class="card">
       <img src="images/Paula.JPG" alt="Paula">
       <h1>Paula Flores</h1>
       <p class="title">I'm keen on talking dirty, open to fetishes and kinks!😈, don't be shy!</p>
-      <a href="https://onlyfans.com/paula_flores/c441" target="_blank">
-        <button>Join Now</button>
-      </a>
+      <button>Join Now</button>
     </div>
 
     <!-- Карточка 2 -->
@@ -169,9 +129,7 @@
       <img src="images/Sofia.jpg" alt="Sofia">
       <h1>Sofia Parker</h1>
       <p class="title">Ready to ignite your imagination? 🔥 I'm Sofia, your sporty muse and fitness trainer who knows how to mix health with pleasure 💪 Love to treat myself to some sweet sins 🍰</p>
-      <a href="https://onlyfans.com/sofiaaaparker/c373" target="_blank">
-        <button>Join Now</button>
-      </a>
+      <button>Join Now</button>
     </div>
 
     <!-- Карточка 3 -->
@@ -179,68 +137,36 @@
       <img src="images/Zoe.jpg" alt="Zoe">
       <h1>Zoe's Paws</h1>
       <p class="title">So, let's embark on a journey of laughter, creativity, and endless possibilities together! 💖✨</p>
-      <a href="https://onlyfans.com/murrawrr/c221" target="_blank">
-        <button>Join Now</button>
-      </a>
+      <button>Join Now</button>
     </div>
   </div>
 
   <script>
-    const cards = document.querySelectorAll('.card');
-    let activeIndex = 0;
+    // Проверяем ширину экрана, чтобы свайп работал только на мобильных устройствах
+    const carousel = document.getElementById('carousel');
+    let isDragging = false;
+    let startX;
 
-    function updateActiveCard() {
-      // Убираем активный класс у всех карточек
-      cards.forEach(card => {
-        card.classList.remove('active');
-        card.classList.add('inactive');
-      });
-      
-      // Добавляем активный класс текущей карточке
-      cards[activeIndex].classList.remove('inactive');
-      cards[activeIndex].classList.add('active');
-    }
+    // Функция начала свайпа
+    carousel.addEventListener('touchstart', (event) => {
+      if (window.innerWidth > 768) return; // Только для мобильных
+      isDragging = true;
+      startX = event.touches[0].clientX;
+    });
 
-    // Обработчик событий для свайпа вправо
-    function swipeRight() {
-      activeIndex = (activeIndex + 1) % cards.length;
-      updateActiveCard();
-    }
+    // Функция окончания свайпа
+    carousel.addEventListener('touchend', () => {
+      if (window.innerWidth > 768) return; // Только для мобильных
+      isDragging = false;
+    });
 
-    // Обработчик событий для свайпа влево
-    function swipeLeft() {
-      activeIndex = (activeIndex - 1 + cards.length) % cards.length;
-      updateActiveCard();
-    }
-
-    // Функция для свайпов на мобильных устройствах
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    function handleSwipe(event) {
-      touchEndX = event.changedTouches[0].screenX;
-      if (touchEndX < touchStartX) {
-        swipeRight(); // Свайп вправо
-      } else if (touchEndX > touchStartX) {
-        swipeLeft(); // Свайп влево
-      }
-    }
-
-    // Добавляем обработчик для тач событий (только для мобильных устройств)
-    if (window.innerWidth <= 768) {
-      document.getElementById('profile-container').addEventListener('touchstart', (event) => {
-        touchStartX = event.touches[0].screenX;
-      });
-
-      document.getElementById('profile-container').addEventListener('touchend', handleSwipe);
-    }
-
-    // Инициализируем первую карточку как активную
-    updateActiveCard();
-
-    // Автоматическая смена карточек через 3 секунды
-    setInterval(swipeRight, 3000);
+    // Функция движения свайпа
+    carousel.addEventListener('touchmove', (event) => {
+      if (!isDragging || window.innerWidth > 768) return; // Только для мобильных
+      const currentX = event.touches[0].clientX;
+      const diffX = startX - currentX;
+      carousel.scrollLeft += diffX;
+    });
   </script>
-
 </body>
 </html>
