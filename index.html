@@ -44,24 +44,29 @@
       flex-shrink: 0;
       scroll-snap-align: center;
       box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
       text-align: center;
-      position: relative;
-      padding-bottom: 60px; /* Пространство для кнопки */
+      padding: 15px;
+    }
+
+    .card.active {
+      transform: scale(1.1);
+      box-shadow: 0 10px 20px rgba(255, 0, 153, 0.6);
     }
 
     .card img {
       width: 100%;
       height: auto;
-      object-fit: contain;
+      object-fit: cover;
       border-top-left-radius: 15px;
       border-top-right-radius: 15px;
+      margin-bottom: 10px;
     }
 
     .card h1 {
       font-size: 24px;
       color: #ff66cc;
-      margin: 10px;
+      margin: 10px 0;
       text-transform: uppercase;
       letter-spacing: 1px;
       text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
@@ -70,54 +75,31 @@
     .card .title {
       font-size: 16px;
       color: #aaa;
-      margin: 10px;
+      margin: 10px 0;
     }
 
     .card a {
       text-decoration: none;
-      position: absolute;
-      bottom: 15px;
-      left: 50%;
-      transform: translateX(-50%);
+      display: inline-block;
+      margin-top: 15px;
     }
 
     .card button {
       background-color: #ff0099;
       color: white;
       border: none;
-      border-radius: 30px;
-      padding: 15px 30px;
-      font-size: 18px;
+      border-radius: 25px;
+      padding: 12px 30px;
+      font-size: 16px;
       font-weight: bold;
       cursor: pointer;
       text-transform: uppercase;
-      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-      position: relative;
-      z-index: 1;
-      overflow: hidden;
+      transition: background-color 0.3s ease, transform 0.3s ease;
     }
 
     .card button:hover {
       background-color: #ff66cc;
       transform: scale(1.1);
-      box-shadow: 0 5px 15px rgba(255, 102, 204, 0.6);
-    }
-
-    /* Анимация подсветки кнопки */
-    .card button::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(120deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
-      z-index: -1;
-      transition: left 0.3s ease;
-    }
-
-    .card button:hover::before {
-      left: 100%;
     }
 
     .container::-webkit-scrollbar {
@@ -162,5 +144,45 @@
     </div>
   </div>
 
+  <script>
+    const container = document.getElementById('carousel');
+    const cards = document.querySelectorAll('.card');
+
+    // Функция для выделения активной карточки
+    const updateActiveCard = () => {
+      let closestCard = null;
+      let minDistance = Infinity;
+
+      cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        const cardCenter = rect.left + rect.width / 2;
+        const containerCenter = container.offsetWidth / 2;
+        const distance = Math.abs(containerCenter - cardCenter);
+
+        if (distance < minDistance) {
+          minDistance = distance;
+          closestCard = card;
+        }
+
+        card.classList.remove('active');
+      });
+
+      if (closestCard) {
+        closestCard.classList.add('active');
+      }
+    };
+
+    // Запуск при каждом окончании скроллинга
+    let isScrolling;
+    container.addEventListener('scroll', () => {
+      window.clearTimeout(isScrolling);
+      isScrolling = setTimeout(() => {
+        updateActiveCard();
+      }, 100); // Ожидание завершения скроллинга
+    });
+
+    // Инициализация первой активной карточки
+    updateActiveCard();
+  </script>
 </body>
 </html>
