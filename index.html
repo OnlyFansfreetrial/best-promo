@@ -65,11 +65,13 @@
       box-shadow: 0 15px 30px rgba(0, 0, 255, 0.5);
     }
 
-    /* Сделаем изображения полными и заполняющими карточки */
+    /* Изображения заполняют всю карточку */
     .card img {
       width: 100%;
       height: 200px;
       object-fit: cover; /* Растягиваем изображение, сохраняя пропорции */
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
     }
 
     .card h1 {
