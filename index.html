@@ -46,14 +46,8 @@
       justify-content: start;
       gap: 30px;
       padding: 40px;
-      overflow-x: auto; /* Разрешаем горизонтальную прокрутку */
-      scroll-snap-type: x mandatory; /* Прокрутка по кругу */
-      scrollbar-width: none; /* Убираем стандартную прокрутку */
-      -ms-overflow-style: none;
-    }
-
-    .container::-webkit-scrollbar {
-      display: none; /* Убираем полосы прокрутки на вебкит-браузерах */
+      overflow-x: hidden; /* Убираем стандартные полосы прокрутки */
+      position: relative;
     }
 
     /* Карточки */
@@ -63,18 +57,28 @@
       width: 280px;
       box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
       overflow: hidden;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
       cursor: pointer;
       animation: fadeIn 1s ease-in-out;
       display: flex;
       flex-direction: column;
       flex-shrink: 0; /* Карточки не сжимаются */
-      scroll-snap-align: start; /* Прокручиваем по кругу */
+      position: relative;
+      transition: all 0.3s ease-in-out;
     }
 
     .card:hover {
       transform: scale(1.05);
       box-shadow: 0 15px 30px rgba(0, 0, 255, 0.5);
+    }
+
+    .card.active {
+      z-index: 10; /* Перемещаем активную карточку поверх других */
+      filter: none; /* Убираем размытие для активной карточки */
+    }
+
+    .card:not(.active) {
+      filter: blur(5px); /* Применяем размытие для остальных карточек */
     }
 
     /* Изображения */
@@ -129,7 +133,7 @@
       }
 
       .container {
-        gap: 10px;
+        gap: 15px;
       }
 
       .card {
@@ -176,11 +180,43 @@
   </div>
 
   <script>
-    // Дополнительный код для карусели: непрерывная прокрутка (бесконечный слайдер)
-    const container = document.getElementById('profile-container');
-    
-    // Дублируем карточки, чтобы создать бесконечный цикл
-    container.innerHTML += container.innerHTML;
+    const cards = document.querySelectorAll('.card');
+    let activeIndex = 0;
+
+    function updateActiveCard() {
+      // Убираем активный класс у всех карточек
+      cards.forEach(card => card.classList.remove('active'));
+      
+      // Добавляем активный класс текущей карточке
+      cards[activeIndex].classList.add('active');
+    }
+
+    // Обработчик событий для свайпа вправо
+    function swipeRight() {
+      activeIndex = (activeIndex + 1) % cards.length;
+      updateActiveCard();
+    }
+
+    // Обработчик событий для свайпа влево
+    function swipeLeft() {
+      activeIndex = (activeIndex - 1 + cards.length) % cards.length;
+      updateActiveCard();
+    }
+
+    // Автоматическая смена карточек через 3 секунды
+    setInterval(swipeRight, 3000);
+
+    // Добавим обработчики событий для свайпов
+    document.getElementById('profile-container').addEventListener('wheel', (event) => {
+      if (event.deltaX > 0) {
+        swipeRight(); // Свайп вправо
+      } else {
+        swipeLeft(); // Свайп влево
+      }
+    });
+
+    // Инициализируем первую карточку как активную
+    updateActiveCard();
   </script>
 
 </body>
