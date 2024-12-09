@@ -93,12 +93,6 @@
     .container::-webkit-scrollbar {
       display: none;
     }
-
-    @media (max-width: 768px) {
-      .container {
-        overflow-x: scroll; /* Горизонтальная прокрутка */
-      }
-    }
   </style>
 </head>
 <body>
@@ -135,11 +129,8 @@
   <script>
     const container = document.getElementById('carousel');
     const cards = document.querySelectorAll('.card');
-    let isDragging = false;
-    let startX;
-    let scrollLeft;
 
-    // Добавляем выделение активной карточки
+    // Функция для выделения активной карточки
     const updateActiveCard = () => {
       let closestCard = null;
       let minDistance = Infinity;
@@ -160,48 +151,20 @@
 
       if (closestCard) {
         closestCard.classList.add('active');
+        closestCard.scrollIntoView({ behavior: 'smooth', inline: 'center' });
       }
     };
 
-    container.addEventListener('scroll', updateActiveCard);
-
-    // Свайп мышью (ПК)
-    container.addEventListener('mousedown', (e) => {
-      isDragging = true;
-      startX = e.pageX - container.offsetLeft;
-      scrollLeft = container.scrollLeft;
+    // Запуск при каждом окончании скроллинга
+    let isScrolling;
+    container.addEventListener('scroll', () => {
+      window.clearTimeout(isScrolling);
+      isScrolling = setTimeout(() => {
+        updateActiveCard();
+      }, 100); // Ожидание завершения скроллинга
     });
 
-    container.addEventListener('mouseleave', () => {
-      isDragging = false;
-    });
-
-    container.addEventListener('mouseup', () => {
-      isDragging = false;
-      updateActiveCard();
-    });
-
-    container.addEventListener('mousemove', (e) => {
-      if (!isDragging) return;
-      e.preventDefault();
-      const x = e.pageX - container.offsetLeft;
-      const walk = (x - startX) * 2; // Ускорение
-      container.scrollLeft = scrollLeft - walk;
-    });
-
-    // Свайп для мобильных
-    container.addEventListener('touchstart', (e) => {
-      startX = e.touches[0].clientX;
-      scrollLeft = container.scrollLeft;
-    });
-
-    container.addEventListener('touchmove', (e) => {
-      const x = e.touches[0].clientX;
-      const walk = startX - x;
-      container.scrollLeft += walk;
-    });
-
-    // Устанавливаем первую карточку как активную
+    // Инициализация первой активной карточки
     updateActiveCard();
   </script>
 </body>
