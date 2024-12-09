@@ -50,8 +50,22 @@
       position: relative;
     }
 
-    /* На ПК - подсветка карточки при наведении мышки */
-    .card:hover {
+    /* Позиционирование текста "Free" */
+    .card .free-label {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background-color: rgba(255, 0, 153, 0.8); /* Легкий розовый фон */
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      text-transform: uppercase;
+    }
+
+    .card.active {
       transform: scale(1.05);
       box-shadow: 0 10px 20px rgba(255, 0, 153, 0.6);
     }
@@ -108,7 +122,6 @@
       display: none;
     }
 
-    /* Стили для мобильных устройств (свайп) */
     @media (max-width: 768px) {
       .container {
         overflow-x: scroll;
@@ -133,6 +146,7 @@
   <div class="container" id="carousel">
     <!-- Карточка 1 -->
     <div class="card">
+      <div class="free-label">Free</div>
       <img src="images/Paula.JPG" alt="Paula">
       <h1>Paula Flores</h1>
       <p class="title">I'm keen on talking dirty, open to fetishes and kinks!😈, don't be shy!</p>
@@ -143,6 +157,7 @@
 
     <!-- Карточка 2 -->
     <div class="card">
+      <div class="free-label">Free</div>
       <img src="images/Sofia.jpg" alt="Sofia">
       <h1>Sofia Parker</h1>
       <p class="title">Ready to ignite your imagination? 🔥 I'm Sofia, your sporty muse and fitness trainer who knows how to mix health with pleasure 💪</p>
@@ -153,6 +168,7 @@
 
     <!-- Карточка 3 -->
     <div class="card">
+      <div class="free-label">Free</div>
       <img src="images/Zoe.jpg" alt="Zoe">
       <h1>Zoe's Paws</h1>
       <p class="title">So, let's embark on a journey of laughter, creativity, and endless possibilities together! 💖✨</p>
@@ -162,46 +178,5 @@
     </div>
   </div>
 
-  <script>
-    // На мобильных карточки можно свайпать
-    const container = document.getElementById('carousel');
-    const cards = document.querySelectorAll('.card');
-
-    const updateActiveCard = () => {
-      let closestCard = null;
-      let minDistance = Infinity;
-
-      cards.forEach((card) => {
-        const rect = card.getBoundingClientRect();
-        const cardCenter = rect.left + rect.width / 2;
-        const containerCenter = container.offsetWidth / 2;
-        const distance = Math.abs(containerCenter - cardCenter);
-
-        if (distance < minDistance) {
-          minDistance = distance;
-          closestCard = card;
-        }
-
-        card.classList.remove('active');
-      });
-
-      if (closestCard) {
-        closestCard.classList.add('active');
-        closestCard.scrollIntoView({ behavior: 'smooth', inline: 'center' });
-      }
-    };
-
-    // Ожидаем завершения скроллинга
-    let isScrolling;
-    container.addEventListener('scroll', () => {
-      window.clearTimeout(isScrolling);
-      isScrolling = setTimeout(() => {
-        updateActiveCard();
-      }, 100);
-    });
-
-    // Инициализация первой активной карточки
-    updateActiveCard();
-  </script>
 </body>
 </html>
