@@ -4,14 +4,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-    /* Логотип в левом верхнем углу */
-    .logo {
-      position: fixed; /* Логотип будет всегда виден */
-      top: 20px; /* Отступ от верхнего края */
-      left: 20px; /* Отступ от левого края */
-      width: 8vw; /* Логотип будет адаптироваться под ширину экрана */
-      height: auto; /* Пропорциональная высота */
-      z-index: 1000; /* Логотип будет на переднем плане */
+    /* Фоновая тема для сайта */
+    body {
+      background-color: #111; /* Темный фон, как на OnlyFans */
+      color: #fff; /* Белый текст на темном фоне */
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    h2 {
+      text-align: center;
+      margin-top: 50px; /* Отступ сверху для заголовка */
+      font-size: 28px;
+    }
+
+    .subtitle {
+      font-size: 18px;
+      color: #bbb; /* Слегка светлее для подзаголовка */
+      text-align: center;
+      margin-bottom: 30px;
     }
 
     /* Основной стиль карточки */
@@ -20,54 +32,45 @@
       max-width: 300px;
       margin: 20px auto;
       text-align: center;
-      font-family: Arial, sans-serif;
-      flex-basis: 300px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      background-color: white; /* Белый фон для карточек */
+      background-color: #222; /* Темный фон для карточек */
+      border-radius: 8px; /* Закругленные углы */
+      overflow: hidden; /* Обрезка содержимого за пределами карточки */
       transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     }
 
     .card:hover {
       transform: scale(1.05); /* Увеличиваем карточку при наведении */
       box-shadow: 0 4px 16px 0 rgba(0, 0, 255, 0.7); /* Подсветка голубым */
-      background-color: #e0f7fa; /* Голубоватый фон */
+      background-color: #444; /* Более светлый фон при наведении */
     }
 
     .title {
-      color: grey;
+      color: #ddd; /* Светлый цвет для заголовков */
       font-size: 18px;
+      margin: 10px 0;
     }
 
     button {
       border: none;
       outline: 0;
       display: inline-block;
-      padding: 8px;
+      padding: 10px;
       color: white;
       background-color: #000;
       text-align: center;
       cursor: pointer;
       width: 100%;
       font-size: 18px;
-    }
-
-    a {
-      text-decoration: none;
-      font-size: 22px;
-      color: black;
+      border-radius: 4px;
+      margin-top: 10px;
     }
 
     button:hover {
       opacity: 0.7;
     }
 
-    .subtitle {
-      font-size: 18px;
-      color: #555;
-      text-align: center;
-      margin-top: -15px;
+    a {
+      text-decoration: none;
     }
 
     .container {
@@ -75,6 +78,7 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
+      padding: 20px;
     }
 
     /* Адаптивность для мобильных устройств */
@@ -97,32 +101,21 @@
         font-size: 16px;
       }
 
-      /* Меньший размер логотипа на мобильных устройствах */
-      .logo {
-        width: 15vw; /* Логотип будет занимать 15% ширины экрана на мобильных устройствах */
-        top: 10px; /* Немного уменьшаем расстояние от верхнего края */
-        left: 10px; /* Немного уменьшаем расстояние от левого края */
-      }
-
       h2 {
-        margin-top: 80px; /* Добавляем отступ сверху, чтобы текст не перекрывался с логотипом */
+        font-size: 24px; /* Меньший размер заголовка для мобильных */
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Логотип в левом верхнем углу -->
-  <img src="images/logo.png" alt="Logo" class="logo">
-
-  <!-- Заголовок с отступом сверху на мобильных -->
-  <h2 style="text-align:center">The most popular OnlyFans accounts</h2>
+  <h2>The most popular OnlyFans accounts</h2>
   <p class="subtitle">You might have seen these models on Instagram, TikTok, Twitter, YouTube</p>
 
   <div class="container">
     <div class="card">
       <img src="images/Paula.JPG" alt="Paula" style="width:100%">
-      <h1>Paula Flores</h1>
+      <h1 class="title">Paula Flores</h1>
       <p class="title">I'm keen on talking dirty, open to fetishes and kinks!😈, don't be shy!</p>
       <p>@paula_flores</p>
       <p><a href="https://onlyfans.com/paula_flores/c441" target="_blank"><button>Get OnlyFans</button></a></p>
@@ -130,7 +123,7 @@
 
     <div class="card">
       <img src="images/Sofia.jpg" alt="Sofia" style="width:100%">
-      <h1>Sofia Parker</h1>
+      <h1 class="title">Sofia Parker</h1>
       <p class="title">Ready to ignite your imagination? 🔥 I'm Sofia, your sporty muse and fitness trainer who knows how to mix health with pleasure 💪 Love to treat myself to some sweet sins 🍰</p>
       <p>@sofiaaaparker</p>
       <p><a href="https://onlyfans.com/sofiaaaparker/c373" target="_blank"><button>Get OnlyFans</button></a></p>
@@ -138,7 +131,7 @@
 
     <div class="card">
       <img src="images/Zoe.jpg" alt="zoe" style="width:100%">
-      <h1>Zoe's Paws</h1>
+      <h1 class="title">Zoe's Paws</h1>
       <p class="title">So, let's embark on a journey of laughter, creativity, and endless possibilities together! 💖✨</p>
       <p>@murrawrr</p>
       <p><a href="https://onlyfans.com/murrawrr/c221" target="_blank"><button>Get OnlyFans</button></a></p>
