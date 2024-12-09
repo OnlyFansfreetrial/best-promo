@@ -133,7 +133,8 @@
       }
 
       .container {
-        gap: 15px;
+        gap: 10px;
+        overflow-x: scroll; /* Разрешаем прокрутку на мобильных */
       }
 
       .card {
@@ -203,20 +204,31 @@
       updateActiveCard();
     }
 
-    // Автоматическая смена карточек через 3 секунды
-    setInterval(swipeRight, 3000);
+    // Функция для свайпов на мобильных устройствах
+    let touchStartX = 0;
+    let touchEndX = 0;
 
-    // Добавим обработчики событий для свайпов
-    document.getElementById('profile-container').addEventListener('wheel', (event) => {
-      if (event.deltaX > 0) {
+    function handleSwipe(event) {
+      touchEndX = event.changedTouches[0].screenX;
+      if (touchEndX < touchStartX) {
         swipeRight(); // Свайп вправо
-      } else {
+      } else if (touchEndX > touchStartX) {
         swipeLeft(); // Свайп влево
       }
+    }
+
+    // Добавляем обработчик для тач событий
+    document.getElementById('profile-container').addEventListener('touchstart', (event) => {
+      touchStartX = event.touches[0].screenX;
     });
+
+    document.getElementById('profile-container').addEventListener('touchend', handleSwipe);
 
     // Инициализируем первую карточку как активную
     updateActiveCard();
+
+    // Автоматическая смена карточек через 3 секунды
+    setInterval(swipeRight, 3000);
   </script>
 
 </body>
