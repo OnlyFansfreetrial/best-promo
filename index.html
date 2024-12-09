@@ -11,21 +11,28 @@
       left: 20px;
       width: 50px;
       height: 50px;
+      z-index: 1000; /* Обеспечивает, чтобы логотип был сверху */
     }
 
     /* Основной стиль карточки */
     .card {
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 255, 0.5); /* Голубая подсветка */
       max-width: 300px;
       margin: 20px auto;
       text-align: center;
       font-family: Arial, sans-serif;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      flex-basis: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      background-color: white; /* Белый фон для карточек */
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
     }
 
     .card:hover {
       transform: scale(1.05); /* Увеличиваем карточку при наведении */
-      box-shadow: 0 4px 16px 0 rgba(0, 0, 255, 0.5); /* Подсветка голубым цветом */
+      box-shadow: 0 4px 16px 0 rgba(0, 0, 255, 0.7); /* Подсветка голубым */
+      background-color: #e0f7fa; /* Голубоватый фон */
     }
 
     .title {
@@ -88,6 +95,13 @@
 
       button {
         font-size: 16px;
+      }
+
+      .logo {
+        width: 40px; /* Уменьшаем размер логотипа на мобильных */
+        height: 40px;
+        top: 10px; /* Немного уменьшаем расстояние от верхнего края */
+        left: 10px; /* Немного уменьшаем расстояние от левого края */
       }
     }
   </style>
