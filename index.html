@@ -63,10 +63,8 @@
       display: flex;
       flex-direction: column;
       flex-shrink: 0;
-      position: absolute;
-      transition: all 0.3s ease-in-out;
+      position: relative;
       filter: blur(5px); /* Размытие всех карточек по умолчанию */
-      z-index: 1;
     }
 
     .card.active {
@@ -126,7 +124,7 @@
 
       .container {
         gap: 10px;
-        overflow-x: scroll; /* Разрешаем прокрутку на мобильных */
+        overflow-x: auto; /* Разрешаем прокрутку на мобильных */
         scroll-snap-type: x mandatory; /* Прокрутка карточек по кругу */
       }
 
@@ -138,6 +136,14 @@
       /* Скрываем стандартный scrollbar */
       .container::-webkit-scrollbar {
         display: none;
+      }
+
+      .container {
+        scroll-snap-type: x mandatory; /* Для плавного перемещения */
+      }
+
+      .card {
+        scroll-snap-align: center; /* Позиционирование карточек по центру при свайпе */
       }
     }
   </style>
