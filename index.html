@@ -1,140 +1,161 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-    /* Фоновая тема для сайта */
+    /* Основной фон и текст */
     body {
       background-color: #111; /* Темный фон, как на OnlyFans */
-      color: #fff; /* Белый текст на темном фоне */
-      font-family: Arial, sans-serif;
+      color: #fff; /* Белый текст */
+      font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
+      text-align: center;
     }
 
+    /* Главный заголовок с эффектом */
     h2 {
-      text-align: center;
-      margin-top: 50px; /* Отступ сверху для заголовка */
-      font-size: 28px;
+      font-size: 48px;
+      margin-top: 80px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #ff0099;
+      text-transform: uppercase;
+      animation: fadeIn 2s ease-in-out; /* Эффект появления заголовка */
     }
 
+    /* Подзаголовок */
     .subtitle {
-      font-size: 18px;
-      color: #bbb; /* Слегка светлее для подзаголовка */
-      text-align: center;
-      margin-bottom: 30px;
+      font-size: 20px;
+      color: #bbb;
+      margin-top: 20px;
+      animation: fadeIn 3s ease-in-out;
     }
 
-    /* Основной стиль карточки */
-    .card {
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 255, 0.5); /* Голубая подсветка */
-      max-width: 300px;
-      margin: 20px auto;
-      text-align: center;
-      background-color: #222; /* Темный фон для карточек */
-      border-radius: 8px; /* Закругленные углы */
-      overflow: hidden; /* Обрезка содержимого за пределами карточки */
-      transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    /* Анимация */
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(50px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
-    .card:hover {
-      transform: scale(1.05); /* Увеличиваем карточку при наведении */
-      box-shadow: 0 4px 16px 0 rgba(0, 0, 255, 0.7); /* Подсветка голубым */
-      background-color: #444; /* Более светлый фон при наведении */
-    }
-
-    .title {
-      color: #ddd; /* Светлый цвет для заголовков */
-      font-size: 18px;
-      margin: 10px 0;
-    }
-
-    button {
-      border: none;
-      outline: 0;
-      display: inline-block;
-      padding: 10px;
-      color: white;
-      background-color: #000;
-      text-align: center;
-      cursor: pointer;
-      width: 100%;
-      font-size: 18px;
-      border-radius: 4px;
-      margin-top: 10px;
-    }
-
-    button:hover {
-      opacity: 0.7;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
+    /* Контейнер для карточек */
     .container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      gap: 20px;
-      padding: 20px;
+      gap: 30px;
+      padding: 40px;
     }
 
-    /* Адаптивность для мобильных устройств */
-    @media (max-width: 768px) {
-      .container {
-        flex-direction: column; /* Изменение на вертикальные карточки */
-        gap: 10px;
-      }
+    /* Карточки */
+    .card {
+      background: linear-gradient(135deg, #1a1a1a, #333);
+      border-radius: 15px;
+      width: 280px;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      animation: fadeIn 1s ease-in-out;
+    }
 
-      .card {
-        max-width: 90%;
-        flex-basis: 100%;
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 30px rgba(0, 0, 255, 0.5);
+    }
+
+    .card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .card:hover img {
+      transform: scale(1.1);
+    }
+
+    .card h1 {
+      font-size: 24px;
+      color: #fff;
+      margin: 15px 0;
+    }
+
+    .card .title {
+      color: #aaa;
+      font-size: 16px;
+      margin: 10px 0;
+    }
+
+    .card button {
+      background-color: #ff0099;
+      border: none;
+      padding: 12px;
+      width: 100%;
+      font-size: 18px;
+      color: white;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 25px;
+      margin-bottom: 20px;
+      transition: background-color 0.3s ease;
+    }
+
+    .card button:hover {
+      background-color: #ff66cc;
+    }
+
+    /* Адаптивность для мобильных */
+    @media (max-width: 768px) {
+      h2 {
+        font-size: 36px;
       }
 
       .subtitle {
         font-size: 16px;
       }
 
-      button {
-        font-size: 16px;
-      }
-
-      h2 {
-        font-size: 24px; /* Меньший размер заголовка для мобильных */
+      .card {
+        width: 90%;
       }
     }
   </style>
 </head>
 <body>
 
-  <h2>The most popular OnlyFans accounts</h2>
+  <h2>The Most Popular OnlyFans Accounts</h2>
   <p class="subtitle">You might have seen these models on Instagram, TikTok, Twitter, YouTube</p>
 
   <div class="container">
+    <!-- Карточка 1 -->
     <div class="card">
-      <img src="images/Paula.JPG" alt="Paula" style="width:100%">
-      <h1 class="title">Paula Flores</h1>
+      <img src="images/Paula.JPG" alt="Paula">
+      <h1>Paula Flores</h1>
       <p class="title">I'm keen on talking dirty, open to fetishes and kinks!😈, don't be shy!</p>
-      <p>@paula_flores</p>
-      <p><a href="https://onlyfans.com/paula_flores/c441" target="_blank"><button>Get OnlyFans</button></a></p>
+      <a href="https://onlyfans.com/paula_flores/c441" target="_blank">
+        <button>Get OnlyFans</button>
+      </a>
     </div>
 
+    <!-- Карточка 2 -->
     <div class="card">
-      <img src="images/Sofia.jpg" alt="Sofia" style="width:100%">
-      <h1 class="title">Sofia Parker</h1>
+      <img src="images/Sofia.jpg" alt="Sofia">
+      <h1>Sofia Parker</h1>
       <p class="title">Ready to ignite your imagination? 🔥 I'm Sofia, your sporty muse and fitness trainer who knows how to mix health with pleasure 💪 Love to treat myself to some sweet sins 🍰</p>
-      <p>@sofiaaaparker</p>
-      <p><a href="https://onlyfans.com/sofiaaaparker/c373" target="_blank"><button>Get OnlyFans</button></a></p>
+      <a href="https://onlyfans.com/sofiaaaparker/c373" target="_blank">
+        <button>Get OnlyFans</button>
+      </a>
     </div>
 
+    <!-- Карточка 3 -->
     <div class="card">
-      <img src="images/Zoe.jpg" alt="zoe" style="width:100%">
-      <h1 class="title">Zoe's Paws</h1>
+      <img src="images/Zoe.jpg" alt="Zoe">
+      <h1>Zoe's Paws</h1>
       <p class="title">So, let's embark on a journey of laughter, creativity, and endless possibilities together! 💖✨</p>
-      <p>@murrawrr</p>
-      <p><a href="https://onlyfans.com/murrawrr/c221" target="_blank"><button>Get OnlyFans</button></a></p>
+      <a href="https://onlyfans.com/murrawrr/c221" target="_blank">
+        <button>Get OnlyFans</button>
+      </a>
     </div>
   </div>
 
