@@ -46,6 +46,7 @@
       justify-content: center;
       gap: 30px;
       padding: 40px;
+      overflow-x: scroll; /* Позволяет прокручивать карточки */
     }
 
     /* Карточки */
@@ -60,6 +61,8 @@
       animation: fadeIn 1s ease-in-out;
       display: flex;
       flex-direction: column;
+      flex-shrink: 0;
+      margin: 0 10px; /* За счет этого карточки не будут выходить за пределы */
     }
 
     .card:hover {
@@ -67,7 +70,7 @@
       box-shadow: 0 15px 30px rgba(0, 0, 255, 0.5);
     }
 
-    /* Изображения, которые не обрезаются, но заполняют всю ширину карточки */
+    /* Изображения */
     .card img {
       width: 100%; /* Заполняем всю ширину карточки */
       height: auto; /* Сохраняем пропорции изображения */
@@ -88,6 +91,7 @@
       margin: 10px 0;
     }
 
+    /* Кнопка с анимацией */
     .card button {
       background-color: #ff0099;
       border: none;
@@ -99,11 +103,12 @@
       cursor: pointer;
       border-radius: 25px;
       margin-bottom: 20px;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.3s ease;
     }
 
     .card button:hover {
       background-color: #ff66cc;
+      transform: scale(1.1); /* Легкое увеличение кнопки при наведении */
     }
 
     /* Адаптивность для мобильных устройств */
@@ -116,8 +121,13 @@
         font-size: 16px;
       }
 
+      .container {
+        flex-direction: row;
+        gap: 15px;
+      }
+
       .card {
-        width: 90%;
+        width: 80%; /* Уменьшаем размер карточек на мобильных */
       }
     }
   </style>
@@ -134,7 +144,7 @@
       <h1>Paula Flores</h1>
       <p class="title">I'm keen on talking dirty, open to fetishes and kinks!😈, don't be shy!</p>
       <a href="https://onlyfans.com/paula_flores/c441" target="_blank">
-        <button>Get OnlyFans</button>
+        <button>Join Now</button>
       </a>
     </div>
 
@@ -144,7 +154,7 @@
       <h1>Sofia Parker</h1>
       <p class="title">Ready to ignite your imagination? 🔥 I'm Sofia, your sporty muse and fitness trainer who knows how to mix health with pleasure 💪 Love to treat myself to some sweet sins 🍰</p>
       <a href="https://onlyfans.com/sofiaaaparker/c373" target="_blank">
-        <button>Get OnlyFans</button>
+        <button>Join Now</button>
       </a>
     </div>
 
@@ -154,7 +164,7 @@
       <h1>Zoe's Paws</h1>
       <p class="title">So, let's embark on a journey of laughter, creativity, and endless possibilities together! 💖✨</p>
       <a href="https://onlyfans.com/murrawrr/c221" target="_blank">
-        <button>Get OnlyFans</button>
+        <button>Join Now</button>
       </a>
     </div>
   </div>
