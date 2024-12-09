@@ -48,14 +48,15 @@
       text-align: center;
       padding: 15px;
       position: relative;
+      margin-bottom: 20px; /* Добавим отступ для мобильной версии */
     }
 
-    /* Позиционирование текста "Free" */
+    /* Текст "Free" */
     .card .free-label {
       position: absolute;
       top: 15px;
       right: 15px;
-      background-color: rgba(255, 0, 153, 0.8); /* Легкий розовый фон */
+      background-color: rgba(255, 0, 153, 0.8);
       color: white;
       font-size: 18px;
       font-weight: bold;
@@ -65,7 +66,8 @@
       text-transform: uppercase;
     }
 
-    .card.active {
+    /* Подсветка и увеличение для ПК */
+    .card:hover {
       transform: scale(1.05);
       box-shadow: 0 10px 20px rgba(255, 0, 153, 0.6);
     }
@@ -122,6 +124,7 @@
       display: none;
     }
 
+    /* Стили для мобильных устройств */
     @media (max-width: 768px) {
       .container {
         overflow-x: scroll;
@@ -132,8 +135,14 @@
         scroll-snap-align: center;
       }
 
+      /* Подсветка и увеличение карточки на мобильных устройствах */
       .card:hover {
-        transform: none; /* Убираем увеличение на мобильных */
+        transform: scale(1.05); /* Увеличение при наведении */
+        box-shadow: 0 10px 20px rgba(255, 0, 153, 0.6); /* Подсветка */
+      }
+
+      .card button {
+        padding: 12px 25px; /* Уменьшаем размер кнопки для мобильных */
       }
     }
   </style>
