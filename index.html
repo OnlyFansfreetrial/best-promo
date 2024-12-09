@@ -127,10 +127,16 @@
       .container {
         gap: 10px;
         overflow-x: scroll; /* Разрешаем прокрутку на мобильных */
+        scroll-snap-type: x mandatory; /* Прокрутка карточек по кругу */
       }
 
       .card {
         width: 80%;
+      }
+
+      /* Скрываем стандартный scrollbar */
+      .container::-webkit-scrollbar {
+        display: none;
       }
     }
   </style>
