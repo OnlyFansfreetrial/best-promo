@@ -10,7 +10,10 @@
     margin: 20px auto;
     text-align: center;
     font-family: Arial, sans-serif;
-    flex-basis: 300px; /* Размер карточки */
+    flex-basis: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .title {
@@ -55,20 +58,24 @@
     gap: 20px;
   }
 
-  /* Адаптивный дизайн для мобильных устройств */
+  /* Медиазапросы для мобильных устройств */
   @media (max-width: 768px) {
     .container {
-      flex-direction: column; /* Карточки становятся в один столбик на мобильных */
+      flex-direction: column; /* Изменяем направление карточек на вертикальное */
       gap: 10px;
     }
 
     .card {
-      max-width: 90%; /* Уменьшаем максимальную ширину карточки */
-      flex-basis: 100%; /* Карточки занимают всю ширину */
+      max-width: 90%; /* Уменьшаем ширину карточки на мобильных */
+      flex-basis: 100%; /* Каждая карточка будет занимать всю ширину */
     }
 
     .subtitle {
-      font-size: 16px; /* Уменьшаем размер шрифта для мобильных */
+      font-size: 16px; /* Уменьшаем размер шрифта на мобильных */
+    }
+
+    button {
+      font-size: 16px; /* Уменьшаем размер шрифта на кнопке */
     }
   }
 </style>
