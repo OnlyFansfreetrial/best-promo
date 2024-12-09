@@ -47,7 +47,6 @@
       gap: 30px;
       padding: 40px;
       position: relative;
-      overflow-x: hidden;
       width: 100%;
     }
 
@@ -60,22 +59,18 @@
       overflow: hidden;
       transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
       cursor: pointer;
-      animation: fadeIn 1s ease-in-out;
       display: flex;
       flex-direction: column;
       flex-shrink: 0;
       position: absolute;
       transition: all 0.3s ease-in-out;
+      filter: blur(5px); /* Размытие всех карточек по умолчанию */
       z-index: 1;
     }
 
     .card.active {
       z-index: 10;
       filter: none; /* Убираем размытие для активной карточки */
-    }
-
-    .card.inactive {
-      filter: blur(5px); /* Применяем размытие для неактивной карточки */
     }
 
     .card img {
@@ -129,7 +124,7 @@
       }
 
       .container {
-        gap: 15px;
+        gap: 10px;
         overflow-x: scroll; /* Разрешаем прокрутку на мобильных */
       }
 
