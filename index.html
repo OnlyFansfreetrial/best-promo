@@ -47,6 +47,7 @@
       transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
       text-align: center;
       position: relative;
+      padding-bottom: 60px; /* Пространство для кнопки */
     }
 
     .card img {
@@ -72,6 +73,14 @@
       margin: 10px;
     }
 
+    .card a {
+      text-decoration: none;
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
     .card button {
       background-color: #ff0099;
       color: white;
@@ -82,49 +91,33 @@
       font-weight: bold;
       cursor: pointer;
       text-transform: uppercase;
-      position: absolute;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      transition: transform 0.3s ease, background-color 0.3s ease;
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
     }
 
     .card button:hover {
       background-color: #ff66cc;
-      transform: translateX(-50%) scale(1.1);
+      transform: scale(1.1);
+      box-shadow: 0 5px 15px rgba(255, 102, 204, 0.6);
     }
 
-    .card button:active {
-      transform: translateX(-50%) scale(0.95);
-    }
-
-    /* Анимация кнопки */
+    /* Анимация подсветки кнопки */
     .card button::before {
       content: "";
       position: absolute;
       top: 0;
-      left: 0;
+      left: -100%;
       width: 100%;
       height: 100%;
-      border-radius: 30px;
-      background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
-      animation: pulse 2s infinite;
+      background: linear-gradient(120deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0));
       z-index: -1;
+      transition: left 0.3s ease;
     }
 
-    @keyframes pulse {
-      0% {
-        transform: scale(0.9);
-        opacity: 0.6;
-      }
-      50% {
-        transform: scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: scale(0.9);
-        opacity: 0.6;
-      }
+    .card button:hover::before {
+      left: 100%;
     }
 
     .container::-webkit-scrollbar {
@@ -143,7 +136,9 @@
       <img src="images/Paula.JPG" alt="Paula">
       <h1>Paula Flores</h1>
       <p class="title">I'm keen on talking dirty, open to fetishes and kinks!😈, don't be shy!</p>
-      <button>Join Now</button>
+      <a href="https://onlyfans.com/paula_flores/c441" target="_blank">
+        <button>Join Now</button>
+      </a>
     </div>
 
     <!-- Карточка 2 -->
@@ -151,7 +146,9 @@
       <img src="images/Sofia.jpg" alt="Sofia">
       <h1>Sofia Parker</h1>
       <p class="title">Ready to ignite your imagination? 🔥 I'm Sofia, your sporty muse and fitness trainer who knows how to mix health with pleasure 💪</p>
-      <button>Join Now</button>
+      <a href="https://onlyfans.com/sofiaaaparker/c373" target="_blank">
+        <button>Join Now</button>
+      </a>
     </div>
 
     <!-- Карточка 3 -->
@@ -159,7 +156,9 @@
       <img src="images/Zoe.jpg" alt="Zoe">
       <h1>Zoe's Paws</h1>
       <p class="title">So, let's embark on a journey of laughter, creativity, and endless possibilities together! 💖✨</p>
-      <button>Join Now</button>
+      <a href="https://onlyfans.com/murrawrr/c221" target="_blank">
+        <button>Join Now</button>
+      </a>
     </div>
   </div>
 
