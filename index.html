@@ -26,6 +26,12 @@
       margin: 10px 0;
     }
 
+    .carousel-wrapper {
+      position: relative;
+      max-width: 90%;
+      margin: auto;
+    }
+
     .container {
       display: flex;
       align-items: center;
@@ -33,7 +39,6 @@
       padding: 20px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
-      position: relative;
       scroll-behavior: smooth;
     }
 
@@ -48,10 +53,9 @@
       text-align: center;
       padding: 15px;
       position: relative;
-      margin-bottom: 20px; /* Добавим отступ для мобильной версии */
+      margin-bottom: 20px;
     }
 
-    /* Текст "Free" */
     .card .free-label {
       position: absolute;
       top: 15px;
@@ -66,7 +70,6 @@
       text-transform: uppercase;
     }
 
-    /* Подсветка и увеличение для ПК */
     .card:hover {
       transform: scale(1.05);
       box-shadow: 0 10px 20px rgba(255, 0, 153, 0.6);
@@ -124,8 +127,40 @@
       display: none;
     }
 
-    /* Стили для мобильных устройств */
+    /* Стрелки навигации */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 0, 153, 0.8);
+      border: none;
+      color: white;
+      font-size: 24px;
+      border-radius: 50%;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 10;
+      transition: background-color 0.3s ease;
+    }
+
+    .arrow:hover {
+      background-color: #ff66cc;
+    }
+
+    .arrow-left {
+      left: 10px;
+    }
+
+    .arrow-right {
+      right: 10px;
+    }
+
+    /* Скрываем стрелки на мобильных устройствах */
     @media (max-width: 768px) {
+      .arrow {
+        display: none;
+      }
+
       .container {
         overflow-x: scroll;
         scroll-snap-type: x mandatory;
@@ -133,16 +168,6 @@
 
       .card {
         scroll-snap-align: center;
-      }
-
-      /* Подсветка и увеличение карточки на мобильных устройствах */
-      .card:hover {
-        transform: scale(1.05); /* Увеличение при наведении */
-        box-shadow: 0 10px 20px rgba(255, 0, 153, 0.6); /* Подсветка */
-      }
-
-      .card button {
-        padding: 12px 25px; /* Уменьшаем размер кнопки для мобильных */
       }
     }
   </style>
@@ -152,8 +177,11 @@
   <h2>The Most Popular OnlyFans Accounts</h2>
   <p class="subtitle">You might have seen these models on Instagram, TikTok, Twitter, YouTube</p>
 
-  <div class="container" id="carousel">
-    <!-- Новые карточки -->
+  <div class="carousel-wrapper">
+    <!-- Левая стрелка -->
+    <button class="arrow arrow-left" id="arrowLeft">&#10094;</button>
+
+       <!-- Новые карточки -->
     <div class="card">
       <div class="free-label">Free</div>
       <img src="images/lizarose.JPG" alt="Liza Rose">
@@ -188,11 +216,23 @@
       <div class="free-label">Free</div>
       <img src="images/lit1lekitty.jpg" alt="Lit1le Kitty">
       <h1>Lit1le Kitty</h1>
-      <p class="title">Let me be your girl next door😈💦 I love to show off my petite body and I moaning like crazy when I cum 💦 🌟</p>
+      <p class="title">Let me be your girl next door😈💦 I love to show off my petite body and I moaning like crazy when I cum 💦 📸🌫️🌟</p>
       <a href="https://onlyfans.com/lit1le_kitty/c112" target="_blank">
         <button>Join Now</button>
       </a>
     </div>
+
+
+    <div class="card">
+      <div class="free-label">Free</div>
+      <img src="images/tastymarie.jpg" alt="Tasty Marie">
+      <h1>Tasty Marie</h1>
+      <p class="title">sexy and confident girl, ready to conquer the world and enjoy every minute ❤️I appreciate in people simplicity, openness, kindness, care, support and mutual assistance.</p>
+      <a href="https://onlyfans.com/tasty_marie/c153" target="_blank">
+        <button>Join Now</button>
+      </a>
+    </div>
+
 
     <!-- Старые карточки -->
     <div class="card">
@@ -226,5 +266,30 @@
     </div>
   </div>
 
+    <!-- Правая стрелка -->
+    <button class="arrow arrow-right" id="arrowRight">&#10095;</button>
+  </div>
+
+  <script>
+    const container = document.getElementById('carousel');
+    const arrowLeft = document.getElementById('arrowLeft');
+    const arrowRight = document.getElementById('arrowRight');
+
+    // Прокрутка влево
+    arrowLeft.addEventListener('click', () => {
+      container.scrollBy({
+        left: -300, // Прокрутка на ширину одной карточки
+        behavior: 'smooth'
+      });
+    });
+
+    // Прокрутка вправо
+    arrowRight.addEventListener('click', () => {
+      container.scrollBy({
+        left: 300, // Прокрутка на ширину одной карточки
+        behavior: 'smooth'
+      });
+    });
+  </script>
 </body>
 </html>
