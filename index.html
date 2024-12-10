@@ -4,6 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
+    /* Основной стиль страницы */
     body {
       background-color: #111;
       color: #fff;
@@ -26,20 +27,22 @@
       margin: 10px 0;
     }
 
+    /* Обертка для карусели */
     .carousel-wrapper {
       position: relative;
       max-width: 90%;
       margin: auto;
     }
 
+    /* Контейнер для карточек */
     .container {
-      display: flex;
+      display: flex; /* Выстраивает элементы в строку */
       align-items: center;
-      gap: 20px;
+      gap: 20px; /* Расстояние между карточками */
       padding: 20px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
+      overflow-x: auto; /* Горизонтальная прокрутка */
+      scroll-snap-type: x mandatory; /* Прокрутка с эффектом защелкивания */
+      scroll-behavior: smooth; /* Плавная прокрутка */
     }
 
     .card {
@@ -123,6 +126,7 @@
       transform: scale(1.1);
     }
 
+    /* Скрытие прокрутки */
     .container::-webkit-scrollbar {
       display: none;
     }
@@ -182,7 +186,9 @@
     <button class="arrow arrow-left" id="arrowLeft">&#10094;</button>
 
     <!-- Контейнер для карточек -->
-    <div id="carousel"></div>
+    <div id="carousel" class="container">
+      <!-- Новые карточки будут вставляться сюда -->
+    </div>
 
     <!-- Правая стрелка -->
     <button class="arrow arrow-right" id="arrowRight">&#10095;</button>
@@ -191,7 +197,7 @@
   <script>
     // Загружаем карточки из файла
     const carousel = document.getElementById('carousel');
-    fetch('cards.html')
+    fetch('cards.html')  // Путь к файлу с карточками
       .then(response => response.text())
       .then(data => {
         carousel.innerHTML = data;
