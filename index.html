@@ -32,7 +32,144 @@
       margin: auto;
     }
 
-    /* Добавьте стили для стрелок, карточек и контейнера */
+    .container {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+    }
+
+    .card {
+      background: linear-gradient(135deg, #1a1a1a, #333);
+      border-radius: 15px;
+      width: 280px;
+      flex-shrink: 0;
+      scroll-snap-align: center;
+      box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      text-align: center;
+      padding: 15px;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .card .free-label {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background-color: rgba(255, 0, 153, 0.8);
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      padding: 5px 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      text-transform: uppercase;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(255, 0, 153, 0.6);
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+      margin-bottom: 10px;
+    }
+
+    .card h1 {
+      font-size: 24px;
+      color: #ff66cc;
+      margin: 10px 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    }
+
+    .card .title {
+      font-size: 16px;
+      color: #aaa;
+      margin: 10px 0;
+    }
+
+    .card a {
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 15px;
+    }
+
+    .card button {
+      background-color: #ff0099;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      padding: 12px 30px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .card button:hover {
+      background-color: #ff66cc;
+      transform: scale(1.1);
+    }
+
+    .container::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Стрелки навигации */
+    .arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 0, 153, 0.8);
+      border: none;
+      color: white;
+      font-size: 24px;
+      border-radius: 50%;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 10;
+      transition: background-color 0.3s ease;
+    }
+
+    .arrow:hover {
+      background-color: #ff66cc;
+    }
+
+    .arrow-left {
+      left: 10px;
+    }
+
+    .arrow-right {
+      right: 10px;
+    }
+
+    /* Скрываем стрелки на мобильных устройствах */
+    @media (max-width: 768px) {
+      .arrow {
+        display: none;
+      }
+
+      .container {
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+      }
+
+      .card {
+        scroll-snap-align: center;
+      }
+    }
   </style>
 </head>
 <body>
@@ -40,12 +177,11 @@
   <h2>The Most Popular OnlyFans Accounts</h2>
   <p class="subtitle">You might have seen these models on Instagram, TikTok, Twitter, YouTube</p>
 
-  <!-- Контейнер для карточек -->
   <div class="carousel-wrapper">
     <!-- Левая стрелка -->
     <button class="arrow arrow-left" id="arrowLeft">&#10094;</button>
 
-    <!-- Карточки будут загружены сюда -->
+    <!-- Контейнер для карточек -->
     <div id="carousel"></div>
 
     <!-- Правая стрелка -->
@@ -53,7 +189,7 @@
   </div>
 
   <script>
-    // Загружаем карточки из отдельного файла
+    // Загружаем карточки из файла
     const carousel = document.getElementById('carousel');
     fetch('cards.html')
       .then(response => response.text())
@@ -61,7 +197,7 @@
         carousel.innerHTML = data;
       });
 
-    // Добавляем скрипты для стрелок
+    // Логика для стрелок
     const arrowLeft = document.getElementById('arrowLeft');
     const arrowRight = document.getElementById('arrowRight');
 
