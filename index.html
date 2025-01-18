@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,36 +27,24 @@
       margin: 10px 0;
     }
 
-    /* Обертка для карусели */
-    .carousel-wrapper {
-      position: relative;
-      max-width: 90%;
-      margin: auto;
-    }
-
     /* Контейнер для карточек */
     .container {
-      display: flex; /* Выстраивает элементы в строку */
-      align-items: center;
+      display: grid; /* Устанавливаем сетку */
+      grid-template-columns: repeat(2, 1fr); /* Два столбца одинаковой ширины */
       gap: 20px; /* Расстояние между карточками */
       padding: 20px;
-      overflow-x: auto; /* Горизонтальная прокрутка */
-      scroll-snap-type: x mandatory; /* Прокрутка с эффектом защелкивания */
-      scroll-behavior: smooth; /* Плавная прокрутка */
+      max-width: 90%;
+      margin: auto;
     }
 
     .card {
       background: linear-gradient(135deg, #1a1a1a, #333);
       border-radius: 15px;
-      width: 280px;
-      flex-shrink: 0;
-      scroll-snap-align: center;
       box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       text-align: center;
       padding: 15px;
       position: relative;
-      margin-bottom: 20px;
     }
 
     .card .free-label {
@@ -69,7 +57,6 @@
       font-weight: bold;
       padding: 5px 10px;
       border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
       text-transform: uppercase;
     }
 
@@ -126,53 +113,9 @@
       transform: scale(1.1);
     }
 
-    /* Скрытие прокрутки */
-    .container::-webkit-scrollbar {
-      display: none;
-    }
-
-    /* Стрелки навигации */
-    .arrow {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background-color: rgba(255, 0, 153, 0.8);
-      border: none;
-      color: white;
-      font-size: 24px;
-      border-radius: 50%;
-      padding: 10px;
-      cursor: pointer;
-      z-index: 10;
-      transition: background-color 0.3s ease;
-    }
-
-    .arrow:hover {
-      background-color: #ff66cc;
-    }
-
-    .arrow-left {
-      left: 10px;
-    }
-
-    .arrow-right {
-      right: 10px;
-    }
-
-    /* Скрываем стрелки на мобильных устройствах */
-    @media (max-width: 768px) {
-      .arrow {
-        display: none;
-      }
-
-      .container {
-        overflow-x: scroll;
-        scroll-snap-type: x mandatory;
-      }
-
-      .card {
-        scroll-snap-align: center;
-      }
+    /* Скрытие горизонтальной прокрутки */
+    body {
+      overflow-x: hidden;
     }
   </style>
 </head>
@@ -181,45 +124,19 @@
   <h2>The Most Popular OnlyFans Accounts</h2>
   <p class="subtitle">You might have seen these models on Instagram, TikTok, Twitter, YouTube</p>
 
-  <div class="carousel-wrapper">
-    <!-- Левая стрелка -->
-    <button class="arrow arrow-left" id="arrowLeft">&#10094;</button>
-
-    <!-- Контейнер для карточек -->
-    <div id="carousel" class="container">
-      <!-- Новые карточки будут вставляться сюда -->
-    </div>
-
-    <!-- Правая стрелка -->
-    <button class="arrow arrow-right" id="arrowRight">&#10095;</button>
+  <!-- Контейнер для карточек -->
+  <div id="carousel" class="container">
+    <!-- Карточки будут добавляться из файла -->
   </div>
 
   <script>
     // Загружаем карточки из файла
     const carousel = document.getElementById('carousel');
-    fetch('cards.html')  // Путь к файлу с карточками
+    fetch('cards.html') // Путь к файлу с карточками
       .then(response => response.text())
       .then(data => {
         carousel.innerHTML = data;
       });
-
-    // Логика для стрелок
-    const arrowLeft = document.getElementById('arrowLeft');
-    const arrowRight = document.getElementById('arrowRight');
-
-    arrowLeft.addEventListener('click', () => {
-      carousel.scrollBy({
-        left: -300,
-        behavior: 'smooth'
-      });
-    });
-
-    arrowRight.addEventListener('click', () => {
-      carousel.scrollBy({
-        left: 300,
-        behavior: 'smooth'
-      });
-    });
   </script>
 
 </body>
