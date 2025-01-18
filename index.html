@@ -111,6 +111,26 @@
       transform: scale(1.1);
     }
 
+    /* Добавление анимации при наведении мыши */
+    .card:hover {
+      transform: translateY(-10px); /* Поднимаем карточку при наведении */
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3); /* Увеличиваем тень */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    /* Добавление эффекта нажатия */
+    .card:active {
+      transform: translateY(2px); /* Карточка немного опускается при нажатии */
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Снижаем тень при нажатии */
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+
+    /* Световой эффект на карточке */
+    .card:hover .title {
+      color: #fff; /* Меняем цвет текста на белый при наведении */
+      text-shadow: 0 0 10px rgba(255, 255, 255, 0.8); /* Добавляем светящийся эффект */
+    }
+
     /* Убираем горизонтальную прокрутку */
     .container::-webkit-scrollbar {
       display: none;
