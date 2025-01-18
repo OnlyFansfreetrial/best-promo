@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,7 +37,11 @@
       margin: auto;
     }
 
+    /* Карточки */
     .card {
+      display: flex; /* Включаем flexbox */
+      flex-direction: column; /* Вертикальное размещение содержимого */
+      justify-content: space-between; /* Равномерное распределение пространства */
       background: linear-gradient(135deg, #1a1a1a, #333);
       border-radius: 15px;
       box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
@@ -45,24 +49,22 @@
       text-align: center;
       padding: 15px;
       position: relative;
+      height: 100%; /* Устанавливаем одинаковую высоту карточек */
     }
 
     .card .free-label {
       position: absolute;
-      top: 15px;
-      right: 15px;
+      top: 10px;
+      right: 10px; /* Устанавливаем отступ справа */
       background-color: rgba(255, 0, 153, 0.8);
       color: white;
-      font-size: 18px;
+      font-size: 14px; /* Уменьшенный шрифт для более компактного вида */
       font-weight: bold;
-      padding: 5px 10px;
+      padding: 5px 10px; /* Добавляем внутренние отступы */
       border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
       text-transform: uppercase;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 10px 20px rgba(255, 0, 153, 0.6);
+      z-index: 2; /* Гарантируем, что элемент будет отображаться выше других */
     }
 
     .card img {
@@ -87,12 +89,7 @@
       font-size: 16px;
       color: #aaa;
       margin: 10px 0;
-    }
-
-    .card a {
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 15px;
+      flex-grow: 1; /* Растягиваем текстовый блок, чтобы карточки имели одинаковую высоту */
     }
 
     .card button {
@@ -106,6 +103,7 @@
       cursor: pointer;
       text-transform: uppercase;
       transition: background-color 0.3s ease, transform 0.3s ease;
+      margin-top: auto; /* Перемещаем кнопку к нижнему краю карточки */
     }
 
     .card button:hover {
@@ -113,9 +111,14 @@
       transform: scale(1.1);
     }
 
-    /* Скрытие горизонтальной прокрутки */
-    body {
-      overflow-x: hidden;
+    /* Убираем горизонтальную прокрутку */
+    .container::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Убираем стрелки */
+    .arrow {
+      display: none;
     }
   </style>
 </head>
@@ -126,7 +129,7 @@
 
   <!-- Контейнер для карточек -->
   <div id="carousel" class="container">
-    <!-- Карточки будут добавляться из файла -->
+    <!-- Карточки загружаются из cards.html -->
   </div>
 
   <script>
